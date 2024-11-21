@@ -1,1 +1,2 @@
 tox==1.6.0
+defusedxml==0.7.1

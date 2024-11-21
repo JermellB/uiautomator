@@ -13,7 +13,7 @@ import hashlib
 import socket
 import re
 import collections
-import xml.dom.minidom
+import defusedxml.minidom
 
 DEVICE_PORT = int(os.environ.get('UIAUTOMATOR_DEVICE_PORT', '9008'))
 LOCAL_PORT = int(os.environ.get('UIAUTOMATOR_LOCAL_PORT', '9008'))
@@ -622,7 +622,7 @@ class AutomatorDevice(object):
             with open(filename, "wb") as f:
                 f.write(content.encode("utf-8"))
         if pretty and "\n " not in content:
-            xml_text = xml.dom.minidom.parseString(content.encode("utf-8"))
+            xml_text = defusedxml.minidom.parseString(content.encode("utf-8"))
             content = U(xml_text.toprettyxml(indent='  '))
         return content
 
